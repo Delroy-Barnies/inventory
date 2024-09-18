@@ -5,6 +5,7 @@ async function getAll(table) {
     return rows;
 }
 
+
 async function postGame(row) {
     await pool.query(`INSERT INTO games(name) 
                       VALUES($1) 
@@ -72,6 +73,22 @@ async function getDevelopers(name) {
     return rows;
 }
 
+async function deleteGame(name) {
+    await pool.query(`DELETE FROM game_developers WHERE game_name=$1`, [name])
+    await pool.query(`DELETE FROM game_genres WHERE game_name=$1`, [name])
+    await pool.query(`DELETE FROM games WHERE name=$1`, [name]);
+}
+
+async function deleteGenre(name) {
+    await pool.query(`DELETE FROM game_genres WHERE genre_name=$1`, [name])
+    await pool.query(`DELETE FROM genres WHERE name=$1`, [name]);
+}
+
+async function deleteDeveloper(name) {
+    await pool.query(`DELETE FROM game_developers WHERE developer_name=$1`, [name])
+    await pool.query(`DELETE FROM developers WHERE name=$1`, [name]);
+}
+
 module.exports = {
     getAll,
     postGame,
@@ -80,5 +97,8 @@ module.exports = {
     getGenresFromGameName,
     getDevelopersFromGameName,
     getGenres,
-    getDevelopers
+    getDevelopers,
+    deleteGame,
+    deleteGenre,
+    deleteDeveloper
 };

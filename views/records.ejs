@@ -17,8 +17,11 @@
     <ul>
         <%records.forEach(function(record) { %>
             <li>
-                <a href="/<%=heading%>/details/<%=record.name%>">
+                <a style="color: rgb(0, 0, 0);" href="/<%=heading%>/details/<%=record.name%>">
                     <%=record.name%>
+                </a>
+                <a style="color: rgb(255, 0, 0);" href="/<%=heading%>/delete/<%=record.name%>">
+                    delete
                 </a>
             </li>
             <%});%>
