@@ -70,8 +70,7 @@ INSERT INTO game_developers (game_name, developer_name)
 
 async function main() {
   console.log("seeding...");
-  const connectionString = process.env.DATABASE_URL;
-  const client = new Client({ connectionString: connectionString });
+  const client = new Client({ connectionString: process.env.DATABASE_URL });
   await client.connect();
   await client.query(SQL);
   await client.end();
