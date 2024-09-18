@@ -1,9 +1,6 @@
 const { Client } = require("pg");
 
 const SQL = `
-CREATE DATABASE inventory;
-
-\c inventory;
 
 CREATE TABLE IF NOT EXISTS games (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
